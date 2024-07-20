@@ -37,7 +37,7 @@ integrations:
     - host: github.com
       # This is a Personal Access Token or PAT from GitHub. You can find out how to generate this token, and more information
       # about setting up the GitHub integration here: https://backstage.io/docs/integrations/github/locations#configuration
-      token: ${GITHUB_TOKEN}
+      token: Z2hwXzBMSno0V0JhN2FheDVlRkltN0RmRkFNa2xzUTJYZDEweXFFQQ==
     ### Example for how to add your GitHub Enterprise instance using the API:
     # - host: ghe.example.net
     #   apiBaseUrl: https://ghe.example.net/api/v3
@@ -66,6 +66,22 @@ auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
   providers:
     # See https://backstage.io/docs/auth/guest/provider
+    github:
+      development:
+        clientId: Ov23lixKe317W7q1JXTK
+        clientSecret: e3e1818ce0c9e71a1fd0bfb7a9860edbce0690b6
+    microsoft:
+      development:
+        clientId: 464b2572-26e8-4dd4-b505-b01512f3ee56
+        clientSecret: a0520dea-c92e-476b-9568-a79d4269fd22
+        tenantId: 4198d6e5-8613-42fd-a22a-44ce866e9887
+        domainHint: 4198d6e5-8613-42fd-a22a-44ce866e9887
+        additionalScopes:
+          - Mail.Send
+        signIn:
+          resolvers:
+            # typically you would pick one of these
+            - resolver: emailMatchingUserEntityProfileEmail
     guest: {}
 
 scaffolder:
@@ -103,3 +119,13 @@ catalog:
     #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
     #   rules:
     #     - allow: [User, Group]
+
+
+kubernetes:
+  clusterLocatorMethods:
+    - type: 'config'
+      clusters:
+        - name: Argocd_Cluster
+          url: argocd-cluster-6s8rl90o.hcp.westus.azmk8s.io
+          authProvider: azure
+          skipTLSVerify: true
